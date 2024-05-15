@@ -99,32 +99,17 @@
     </header>
     <nav>
         <ul>
-            <li><a href="#ijek">Ijek</a></li>
-            <li><a href="#ifood">Ifood</a></li>
+            <li><a href="/">Ijek</a></li>
+            <li><a href="/?page=ifood">Ifood</a></li>
         </ul>
     </nav>
     <main>
-        <div id="ijek" class="container">
-            <h1>Pesan Ojek Motor</h1>
-            <form action="" method="post">
-                <label for="pickup">Lokasi Jemput:</label>
-                <input type="text" id="pickup" name="pickup" required>
-                <label for="destination">Tujuan:</label>
-                <input type="text" id="destination" name="destination" required>
-                <input type="submit" value="Pesan">
-            </form>
+        <div class="container">
             <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_GET['page'])) {
-                $pickup = htmlspecialchars($_POST['pickup']);
-                $destination = htmlspecialchars($_POST['destination']);
-                echo "<div class='message'><p>Ojek motor dipesan dari: <strong>$pickup</strong><br>ke tujuan: <strong>$destination</strong></p></div>";
-            }
+            if(isset($_GET['page']) && $_GET['page'] == 'ifood'){
             ?>
-        </div>
-
-        <div id="ifood" class="container" style="display:none;">
             <h1>Pesan Makanan</h1>
-            <form action="" method="post">
+            <form action="/" method="post">
                 <label for="food">Nama Makanan:</label>
                 <input type="text" id="food" name="food" required>
                 <label for="restaurant">Restoran:</label>
@@ -132,33 +117,30 @@
                 <input type="submit" value="Pesan">
             </form>
             <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['page']) && $_GET['page'] == 'ifood') {
-                $food = htmlspecialchars($_POST['food']);
-                $restaurant = htmlspecialchars($_POST['restaurant']);
-                echo "<div class='message'><p>Makanan: <strong>$food</strong><br>Dipesan dari restoran: <strong>$restaurant</strong></p></div>";
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['page']) && $_GET['page'] == 'ifood') {
+                    $food = htmlspecialchars($_POST['food']);
+                    $restaurant = htmlspecialchars($_POST['restaurant']);
+                    echo "<div class='message'><p>Makanan: <strong>$food</strong><br>Dipesan dari restoran: <strong>$restaurant</strong></p></div>";
+                }
+            } else {
+            ?>
+            <h1>Pesan Ojek Motor</h1>
+            <form action="/" method="post">
+                <label for="pickup">Lokasi Jemput:</label>
+                <input type="text" id="pickup" name="pickup" required>
+                <label for="destination">Tujuan:</label>
+                <input type="text" id="destination" name="destination" required>
+                <input type="submit" value="Pesan">
+            </form>
+            <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_GET['page'])) {
+                    $pickup = htmlspecialchars($_POST['pickup']);
+                    $destination = htmlspecialchars($_POST['destination']);
+                    echo "<div class='message'><p>Ojek motor dipesan dari: <strong>$pickup</strong><br>ke tujuan: <strong>$destination</strong></p></div>";
+                }
             }
             ?>
         </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const links = document.querySelectorAll('nav a');
-                links.forEach(link => {
-                    link.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const targetId = this.getAttribute('href').substring(1);
-                        const containers = document.querySelectorAll('.container');
-                        containers.forEach(container => {
-                            if (container.id === targetId) {
-                                container.style.display = 'block';
-                            } else {
-                                container.style.display = 'none';
-                            }
-                        });
-                    });
-                });
-            });
-        </script>
     </main>
 </body>
 </html>
