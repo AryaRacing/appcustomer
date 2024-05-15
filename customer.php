@@ -69,7 +69,7 @@
                     <input type="text" id="destination" name="destination"><br><br>
                     <input type="submit" value="Pesan">
                 </form>';
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'ijek') {
                     $pickup = htmlspecialchars($_POST['pickup']);
                     $destination = htmlspecialchars($_POST['destination']);
                     echo '<p>Ojek motor dipesan dari <strong>' . $pickup . '</strong> ke <strong>' . $destination . '</strong>.</p>';
@@ -77,14 +77,14 @@
             } elseif ($action == 'ifood') {
                 echo '
                 <h2>Pesan Makanan</h2>
-                <form action="services.php?action=ifood" method="post">
+                <form action="customer.php?action=ifood" method="post">
                     <label for="food">Nama Makanan:</label>
                     <input type="text" id="food" name="food"><br><br>
                     <label for="restaurant">Restoran:</label>
                     <input type="text" id="restaurant" name="restaurant"><br><br>
                     <input type="submit" value="Pesan">
                 </form>';
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'ifood') {
                     $food = htmlspecialchars($_POST['food']);
                     $restaurant = htmlspecialchars($_POST['restaurant']);
                     echo '<p>Makanan <strong>' . $food . '</strong> dipesan dari restoran <strong>' . $restaurant . '</strong>.</p>';
