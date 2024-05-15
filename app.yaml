@@ -1,4 +1,5 @@
-runtime: php73
+runtime: php83
+service: appcustomer
 
 handlers:
 - url: /.*
