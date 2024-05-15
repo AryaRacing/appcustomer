@@ -1,5 +1,5 @@
-runtime: php
+runtime: php73
 
 handlers:
 - url: /.*
-  script: customer.php
+  script: index.php
