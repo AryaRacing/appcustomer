@@ -1,0 +1,11 @@
+runtime: php
+
+handlers:
+- url: /ijek
+  script: customer.php
+
+- url: /ifood
+  script: customer.php
+
+- url: /.*
+  script: index.php
